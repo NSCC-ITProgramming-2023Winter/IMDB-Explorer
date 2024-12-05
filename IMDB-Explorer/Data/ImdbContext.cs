@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using IMDB_Explorer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace IMDB_Explorer.Data;
 
+/// <summary>
+/// scaffold-dbcontext command :
+/// scaffold-dbcontext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IMDB;Integrated Security=True;Trust Server Certificate=False;" Microsoft.EntityFrameworkCore.SqlServer -contextdir Data -outputdir Models/Generated -contextnamespace IMDB_Explorer.Data -namespace IMDB_Explorer.Models -force
+/// </summary>
+/// 
 public partial class ImdbContext : DbContext
 {
     public ImdbContext()
@@ -32,7 +38,7 @@ public partial class ImdbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=IMDB;Integrated Security=True;Trust Server Certificate=False;");
+        => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["IMDBConn"].ConnectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
