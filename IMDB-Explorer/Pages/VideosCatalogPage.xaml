@@ -29,7 +29,39 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding Index}" FontWeight="Bold" FontSize="20"></TextBlock>
+                        <TextBlock FontWeight="Normal" FontSize="15">
+                        <Run Text="(" />
+                        <Run Text="{Binding ArtCount,Mode=OneWay}" />
+                        <Run Text=")" />
+                        </TextBlock>
+
+                        <!-- Second-level listview is for the GROUPED Artist-->
+                        <Expander Header="View Actors(s)">
+                            <ListView ItemsSource="{Binding name}" BorderBrush="Black" BorderThickness="2">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="{Binding NameId}" FontWeight="Bold"></TextBlock>
+                                            <!-- Third-level listview is for the videos -->
+                                            <Expander Header="View Video(s)">
+                                                <ListView ItemsSource="{Binding Titles}" BorderBrush="Black" BorderThickness="2" >
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate DataType="local:Titles">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding PrimaryTitle}" FontWeight="Bold"></TextBlock>
+                                                                
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </Expander>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Expander>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

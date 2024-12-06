@@ -45,6 +45,7 @@ namespace IMDB_Explorer.Pages
         {
             // Load only 100 pieces of data for the initial
             videosCatalogViewSource.Source = _context.Names
+                .Include(n => n.Titles) // Explicit Loading of related data (Titles)
                 .OrderBy(n => n.NameId)
                 .Take(100) // Control the number of loads
                 .ToList();
@@ -57,13 +58,20 @@ namespace IMDB_Explorer.Pages
             var query =
                 from name in _context.Names
                 where name.PrimaryName.Contains(textSearch.Text)
+                group name by name.PrimaryName.ToUpper().Substring(0, 1) into nameGroup
                 select new
                 {
-                    name.NameId,
-                    name.PrimaryName,
-                    name.BirthYear,
-                    name.DeathYear
+                    Index = nameGroup.Key,
+                    ArtCount = nameGroup.Count().ToString(),
+                    name = nameGroup.ToList<Name>()
                 };
+            //select new
+            //{
+            //    name.NameId,
+            //    name.PrimaryName,
+            //    name.BirthYear,
+            //    name.DeathYear
+            //};
 
             //Execture the query against the db and assign it as the data source for the listview
             videosCatalogListVew.ItemsSource = query.ToList();
