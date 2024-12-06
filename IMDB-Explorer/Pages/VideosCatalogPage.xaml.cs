@@ -31,13 +31,25 @@ namespace IMDB_Explorer.Pages
             videosCatalogViewSource = (CollectionViewSource)FindResource(nameof(videosCatalogViewSource));
 
             //Load data from the database
-            _context.Names.Load();
+            //_context.Names.Load(); This will load all the data,  too slow
             //_context.Artists.Load();
             //_context.Albums.Load();
             //_context.Tracks.Load();
 
+            LoadInitialData(); // use this function, only load 100 row data
+
             videosCatalogViewSource.Source = _context.Names.Local.ToObservableCollection();
         }
+
+        private void LoadInitialData()
+        {
+            // Load only 100 pieces of data for the initial
+            videosCatalogViewSource.Source = _context.Names
+                .OrderBy(n => n.NameId)
+                .Take(100) // Control the number of loads
+                .ToList();
+        }
+
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
