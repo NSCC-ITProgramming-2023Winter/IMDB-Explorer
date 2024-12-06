@@ -81,7 +81,7 @@
        FontSize="35" FontWeight="Bold" TextAlignment="Left" 
        Margin="0,0,0,10" Padding="20,10,10,10"
        Background="#DDFFF7" FontFamily="Consolas"/>
-        <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" Width="auto" Height="auto" NavigationUIVisibility="Hidden" ></Frame>
+        <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" Width="auto" Height="auto" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" ></Frame>
 
     </DockPanel>
 </Window>

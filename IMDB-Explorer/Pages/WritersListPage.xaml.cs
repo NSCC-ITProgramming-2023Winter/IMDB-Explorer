@@ -24,5 +24,15 @@ namespace IMDB_Explorer.Pages
         {
             InitializeComponent();
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void textSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

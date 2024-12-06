@@ -9,6 +9,17 @@
       Title="WritersListPage">
 
     <StackPanel>
-        <TextBlock Text="Writers List Page" FontSize="38"></TextBlock>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <!-- Title -->
+            <TextBlock Text="Writers List" FontSize="30" FontFamily="serif" VerticalAlignment="Center" Width="450" Margin="10, 5, 0, 3"/>
+            
+            <!-- Search Bar -->
+            <StackPanel Width="Auto" HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock Text="Search by Writer: " FontSize="15" VerticalAlignment="Center" Margin="10,0,5,0" />
+                <TextBox x:Name="textSearch" Width="200" Height="20" VerticalAlignment="Center" />
+            </StackPanel>
+
+
+        </StackPanel>
     </StackPanel>
 </Page>
