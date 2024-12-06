@@ -6,7 +6,93 @@
         xmlns:local="clr-namespace:IMDB_Explorer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="exitImage" UriSource="/images/exit.png"></BitmapImage>
+            <BitmapImage x:Key="homeImage" UriSource="/images/home.png"></BitmapImage>
+            <BitmapImage x:Key="videosImage" UriSource="/images/videos.png"></BitmapImage>
+            <BitmapImage x:Key="directorsImage" UriSource="/images/directors.png"></BitmapImage>
+            <BitmapImage x:Key="writersImage" UriSource="/images/writers.png"></BitmapImage>
+            <BitmapImage x:Key="videoCatalogImage" UriSource="/images/catalog.png"></BitmapImage>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="File" Header="_File">
+                <MenuItem x:Name="Exit" Header="_Exit" Click="Exit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource exitImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Pages">
+                <MenuItem x:Name="Home" Header="_Home" Click="HomeButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource homeImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="Videos" Header="_View Videos" Click="VideosButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource videosImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="Directors" Header="_View Directors" Click="DirectorsButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource directorsImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="Writers" Header="_View Writers" Click="WritersButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource writersImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="VideoCatalog" Header="_View VideoCatalog" Click="VideoCatalogButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource videoCatalogImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!--Add a header after the menu-->
+        <TextBlock DockPanel.Dock="Top" Text="Welcome to the IMDB Explorer!" 
+               FontSize="24" FontWeight="Bold" TextAlignment="Center" 
+               Margin="0,10,0,10"
+               Background="Beige"/>
+
+        <ToolBar DockPanel.Dock="Left" Background="Bisque">
+            <StackPanel Orientation="Vertical" Width="50">
+                <Button x:Name="HomeButton" ToolTip="Go to Home" Click="HomeButton_Click">
+                    <Image Source="{StaticResource homeImage}"></Image>
+                </Button>
+                <Button x:Name="VideosButton" ToolTip="View All Videos" Click="VideosButton_Click">
+                    <Image Source="{StaticResource videosImage}"></Image>
+                </Button>
+                <Button x:Name="DirectorsButton" ToolTip="View All Directors" Click="DirectorsButton_Click">
+                    <Image Source="{StaticResource directorsImage}"></Image>
+                </Button>
+                <Button x:Name="WritersButton" ToolTip="View All Writers" Click="WritersButton_Click">
+                    <Image Source="{StaticResource writersImage}"></Image>
+                </Button>
+                <Button x:Name="VideoCatalogButton" ToolTip="View All Video Catalog" Click="VideoCatalogButton_Click">
+                    <Image Source="{StaticResource videoCatalogImage}"></Image>
+                </Button>
+            </StackPanel>
+        </ToolBar>
+
+        <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" Width="auto" Height="auto" NavigationUIVisibility="Hidden" ></Frame>
+
+    </DockPanel>
 </Window>
+
+    
+<!-- Images from
+    https://www.flaticon.com/free-icon/home_263115?term=home&page=1&position=7&origin=search&related_id=263115
+    https://www.flaticon.com/free-icon/reject_5368396?term=exit&page=1&position=7&origin=search&related_id=5368396
+    https://www.flaticon.com/free-icon/youtube_2991195?term=video&page=1&position=8&origin=search&related_id=2991195
+    https://www.flaticon.com/free-icon/cinema_3875391?term=director&page=2&position=27&origin=search&related_id=3875391
+    https://www.flaticon.com/free-icon/user-avatar_8188338?term=writer&page=1&position=68&origin=search&related_id=8188338
+    https://www.flaticon.com/free-icon/products_6415496?term=catalog&page=1&position=12&origin=search&related_id=6415496
+    -->

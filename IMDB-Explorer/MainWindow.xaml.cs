@@ -20,5 +20,35 @@ namespace IMDB_Explorer
         {
             InitializeComponent();
         }
+
+        private void VideoCatalogButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.VideosCatalogPage());
+        }
+
+        private void WritersButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.WritersListPage());
+        }
+
+        private void DirectorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.DirectorsListPage());
+        }
+
+        private void VideosButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.VideosListPage());
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.HomePage());
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
