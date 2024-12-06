@@ -4,11 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IMDB_Explorer.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
       Title="VideosCatalogPage">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="videosCatalogViewSource"></CollectionViewSource>
+    </Page.Resources>
+
     <StackPanel>
-        <TextBlock Text="Videos Catalog Page" FontSize="38"></TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
+            <!-- Title -->
+            <TextBlock Text="Videos Catalog" FontSize="35" FontFamily="Consolas" VerticalAlignment="Center" Margin="15,0,10,0" Width="640"/>
+
+            <!-- Search Bar -->
+            <StackPanel Width="Auto" HorizontalAlignment="Right" Orientation="Horizontal" >
+                <TextBlock Text="Search by Actor: " FontSize="20" VerticalAlignment="Center" Margin="10,0,5,0" />
+                <TextBox x:Name="textSearch" Width="200" Height="30" VerticalContentAlignment="Center" Margin="0,0,5,0" />
+                <Button x:Name="btnSearch" Content="Search" Width="50" Height="30" Click="btnSearch_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <!-- Top-level listview is for the GROUPED actors (by first letter)-->
+        <ListView x:Name="videosCatalogListVew" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Height="500" BorderBrush="Black" 
+              BorderThickness="2" Margin="15,0,15,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </Page>
