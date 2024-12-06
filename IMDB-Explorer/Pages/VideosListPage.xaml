@@ -1,14 +1,55 @@
-﻿<Page x:Class="IMDB_Explorer.Pages.VideosListPage"
+﻿<Page x:Class="IMDB_Explorer.Pages.VideoListPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IMDB_Explorer.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="VideosListPage">
+      mc:Ignorable="d"
+      Title="VideoListPage">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="videosViewSource" x:Name="videosViewSource" Source="{Binding}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Genre" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Page.Resources>
 
     <StackPanel>
-        <TextBlock Text="Videos List Page" FontSize="38"></TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
+            <!-- Title -->
+            <TextBlock Text="Video List" FontSize="35" FontFamily="Consolas" VerticalAlignment="Center" Margin="15,0,10,0" Width="640"/>
+
+            <!-- Search Bar -->
+            <StackPanel Width="Auto" HorizontalAlignment="Right" Orientation="Horizontal" >
+                <TextBlock Text="Search by Title: " FontSize="20" VerticalAlignment="Center" Margin="10,0,5,0" />
+                <TextBox x:Name="textSearch" Width="200" Height="30" VerticalContentAlignment="Center" Margin="0,0,5,0" />
+                <Button x:Name="btnSearch" Content="Search" Width="50" Height="30" Click="btnSearch_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Grouped ListView -->
+        <ListView x:Name="videoListView" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Height="500" BorderBrush="Black" 
+                  BorderThickness="2" Margin="15,0,15,0" ItemsSource="{Binding Source={StaticResource videosViewSource}}">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Name}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="16" Margin="5,0,5,0"/>
+                        <TextBlock Text="{Binding ReleaseYear}" FontSize="16" Margin="5,0,5,0"/>
+                        <TextBlock Text="{Binding Genre}" FontSize="16" Margin="5,0,5,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </Page>

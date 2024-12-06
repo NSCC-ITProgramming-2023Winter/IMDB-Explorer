@@ -37,4 +37,3 @@ public partial class Title
 
     public virtual ICollection<Name> NamesNavigation { get; set; } = new List<Name>();
 }
-
