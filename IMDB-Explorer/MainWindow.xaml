@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IMDB_Explorer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FFA69E">
+        Title="MainWindow" Height="720" Width="1200" Background="#FFA69E">
 
     <Window.Resources>
         <ResourceDictionary>
