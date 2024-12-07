@@ -17,8 +17,11 @@
                 <TextBlock Text="Search by Writer: " FontSize="20" VerticalAlignment="Center" Margin="10,0,5,0" />
                 <TextBox x:Name="textSearch" Width="200" Height="30" VerticalAlignment="Center" TextChanged="textSearch_TextChanged" Margin="0,0,5,0" />
             </StackPanel>
-
-
         </StackPanel>
+        <!--Listview is for the Writer's List -->
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Height="500" BorderBrush="Black" BorderThickness="2" Margin="15,0,15,0">
+            
+        </ListView>
+        
     </StackPanel>
 </Page>
