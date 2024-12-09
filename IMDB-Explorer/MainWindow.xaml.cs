@@ -38,7 +38,7 @@ namespace IMDB_Explorer
 
         private void VideosButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.VideosListPage());
+            MainFrame.NavigationService.Navigate(new Pages.VideoListPage());
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
