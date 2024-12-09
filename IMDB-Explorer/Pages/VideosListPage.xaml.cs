@@ -21,37 +21,29 @@ namespace IMDB_Explorer.Pages
             InitializeComponent();
             videosViewSource = (CollectionViewSource)FindResource(nameof(videosViewSource));
 
-            LoadInitialData(); // Only load initial data for better performance
+            // Use the dbContext to tell EF to load the data we want to use on this page
+            _context.Titles.Load();
 
-            videosViewSource.Source = _context.Videos.Local.ToObservableCollection();
+            // Set the viewsource data source to use the Products data collection (dbset)
+            videosViewSource.Source = _context.Titles.Local.ToObservableCollection();
+
         }
 
-        private void LoadInitialData()
-        {
-            // Load 100 rows of video data along with related genres
-            videosViewSource.Source = _context.Videos
-                .Include(v => v.Genre) // Explicitly include related Genre data
-                .OrderBy(v => v.Title)
-                .Take(100)
-                .ToList();
-        }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            // Perform search and group results by genre
-            var query =
-                from video in _context.Videos
-                where video.Title.Contains(textSearch.Text)
-                group video by video.Genre into videoGroup
-                select new
-                {
-                    Genre = videoGroup.Key,
-                    VideoCount = videoGroup.Count(),
-                    Videos = videoGroup.ToList()
-                };
+            string searchText = textSearch.Text.Trim();
 
-            // Update the ListView's ItemsSource with the query results
-            videoListView.ItemsSource = query.ToList();
+            // USE LINQ
+            // Define the query
+            var query = from title in _context.Titles
+                        where title.PrimaryTitle.Contains(searchText)
+                        orderby title.TitleId
+                        select title;
+
+
+            // Execute the query
+            videosViewSource.Source = query.ToList();
         }
     }
 }
