@@ -13,22 +13,25 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
             <!-- Title -->
-            <TextBlock Text="Writers List" FontSize="35" FontFamily="serif" VerticalAlignment="Center" Margin="15,0,10,0" Width="640"/>
+            <TextBlock Text="Writers List" FontSize="35" FontFamily="Consolas" VerticalAlignment="Center" Margin="15,0,10,0" Width="640"/>
 
             <!-- Search Bar -->
             <StackPanel Width="Auto" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="Search by Writer: " FontSize="20" VerticalAlignment="Center" Margin="10,0,5,0" />
-                <TextBox x:Name="textSearch" Width="250" Height="30" FontSize="20" VerticalAlignment="Center" TextChanged="textSearch_TextChanged" Margin="0,0,5,0" />
+                <TextBox x:Name="textSearch" Width="200" Height="30" FontSize="20" VerticalAlignment="Center" Margin="0,0,5,0" />
+                <Button x:Name="btnSearch" Content="Search" Width="50" Height="30" Click="btnSearch_Click"/>
             </StackPanel>
+            
         </StackPanel>
         <!--Listview is for the Writer's List -->
-        <ListView x:Name="listWriterSearchResults" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" FontSize="20" Height="500" BorderBrush="Black" BorderThickness="2" Margin="15,0,15,0">
+        <ListView x:Name="listWriterSearchResults" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" FontSize="18" Height="500" BorderBrush="Black" BorderThickness="2" Margin="15,0,15,0">
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Writer" Width="530.325"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding BirthYear}" Header="Year of Birth" Width="265.1625"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding DeathYear}" Header="Year of Death" Width="265.1625"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ID}" Header="ID" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Writer" Width="220" />
+                    <GridViewColumn DisplayMemberBinding="{Binding BirthYear}" Header="BirthYear" />
+                    <GridViewColumn DisplayMemberBinding="{Binding DeathYear}" Header="DeathYear" />
                 </GridView>
             </ListView.View>
         </ListView>

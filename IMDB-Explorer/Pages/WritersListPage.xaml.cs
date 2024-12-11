@@ -22,29 +22,22 @@ namespace IMDB_Explorer.Pages
     /// </summary>
     public partial class WritersListPage : Page
     {
-        
 
-        private ImdbContext _context = new ImdbContext();
-        CollectionViewSource writerViewSource = new CollectionViewSource();
+        // Create a dbContext to use to access the database
+        private readonly ImdbContext _context = new ImdbContext();
+
+        // Create a CollectionViewSource to hold the list of Names
+        private CollectionViewSource writerViewSource = new CollectionViewSource();
         
         public WritersListPage()
         {
+            // This will load all the Names
             InitializeComponent();
 
-            //Tie the markup viewsource object to the C# code viewsource object
-            writerViewSource = (CollectionViewSource)FindResource(nameof(writerViewSource));
 
-
+            // Use the dbContext to tell EF to load the data we want to use on this page
             LoadInitialData();
 
-
-            //Use the dbContext to tell EF to load data from a junction between Principal and Name tables for our Writers data
-            //_context.Names.Load();
-            // Bind the data to the grid
-            //writerViewSource.Source = writers;
-
-            //Bind the initial list of Names to the listbox
-            //listWriterSearchResults.ItemsSource = writerViewSource;
         }
 
         private void LoadInitialData()
@@ -57,6 +50,7 @@ namespace IMDB_Explorer.Pages
                       name => name.NameId,
                       (principal, name) => new
                       {
+                          ID = name.NameId,
                           Name = name.PrimaryName,
                           BirthYear = name.BirthYear,
                           DeathYear = name.DeathYear
@@ -64,9 +58,12 @@ namespace IMDB_Explorer.Pages
                 .Distinct()
                 .OrderBy(x => x.Name)
                 .ToList();
+
+            //Bind the initial list of Names to the listbox
+            listWriterSearchResults.ItemsSource = writerViewSource.View;
         }
 
-        private void textSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             //Linq
             //Defining our LINQ Query 
@@ -74,14 +71,16 @@ namespace IMDB_Explorer.Pages
             var query = _context.Principals
             .Where(p => p.JobCategory == "writer")
             .Join(_context.Names,
-          principal => principal.NameId,
-          name => name.NameId,
-          (principal, name) => new
-          {
+              principal => principal.NameId,
+              name => name.NameId,
+            (principal, name) => new
+            {
+              ID = name.NameId,
               Name = name.PrimaryName,
               BirthYear = name.BirthYear,
               DeathYear = name.DeathYear
-          })
+
+            })
             .Where(n => n.Name.ToLower().Contains(textSearch.Text.ToLower()))
             .Distinct()
             .OrderBy(n => n.Name)
