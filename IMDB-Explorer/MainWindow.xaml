@@ -79,9 +79,9 @@
         <!--Add a header after the menu-->
         <TextBlock DockPanel.Dock="Top" Text="Welcome to the IMDB Explorer!" 
        FontSize="35" FontWeight="Bold" TextAlignment="Left" 
-       Margin="0,0,0,10" Padding="20,10,10,10"
+       Margin="0,0,0,0" Padding="20,10,10,10"
        Background="#DDFFF7" FontFamily="Consolas"/>
-        <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" Width="auto" Height="auto" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" ></Frame>
+        <Frame x:Name="MainFrame"  Width="auto" Height="auto" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated"></Frame>
 
     </DockPanel>
 </Window>
