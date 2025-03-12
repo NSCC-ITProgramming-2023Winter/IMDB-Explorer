@@ -43,6 +43,8 @@ namespace IMDB_Explorer.Pages
         private void LoadInitialData()
         {
             //Linq
+            _context.Database.SetCommandTimeout(120); // Set to 120 seconds or appropriate value
+
             writerViewSource.Source = _context.Principals 
                 .AsNoTracking()
                 .Where(p => p.JobCategory == "writer")
@@ -68,8 +70,11 @@ namespace IMDB_Explorer.Pages
         {
             //Linq
             //Defining our LINQ Query 
+            _context.Database.SetCommandTimeout(120); // Set to 120 seconds or appropriate value
 
             var query = _context.Principals
+
+            .AsNoTracking()
             .Where(p => p.JobCategory == "writer")
             .Join(_context.Names,
               principal => principal.NameId,
