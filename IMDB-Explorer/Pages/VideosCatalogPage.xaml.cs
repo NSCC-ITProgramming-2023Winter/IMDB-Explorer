@@ -35,7 +35,10 @@ namespace IMDB_Explorer.Pages
             }
 
             // Push the query to the database and load the relevant data directly
+
+            _context.Database.SetCommandTimeout(180); // Set timeout to 180 seconds
             var query = _context.Names
+                .AsNoTracking()
                 .Where(name => name.PrimaryName.Contains(searchText)) 
                 .Include(name => name.Titles)  // Explicitly load Titles
                 .GroupBy(name => name.PrimaryName.Substring(0, 1).ToUpper()) 

@@ -44,6 +44,7 @@ namespace IMDB_Explorer.Pages
         {
             //Linq
             writerViewSource.Source = _context.Principals 
+                .AsNoTracking()
                 .Where(p => p.JobCategory == "writer")
                 .Join(_context.Names,
                       principal => principal.NameId,

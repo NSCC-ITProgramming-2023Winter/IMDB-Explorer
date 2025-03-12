@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IMDB_Explorer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1200" Background="#FFA69E">
+        Title="MainWindow" Height="720" Width="1200" Background="Black">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -56,7 +56,7 @@
             </MenuItem>
         </Menu>
 
-        <StackPanel DockPanel.Dock="Left" Background="#93E1D8" Width="70" >
+        <StackPanel DockPanel.Dock="Left" Background="Gold" Width="70" >
             <StackPanel Orientation="Vertical" Width="50" >
                 <Button x:Name="HomeButton" ToolTip="Go to Home" Click="HomeButton_Click" Margin="0,15,0,10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                     <Image Source="{StaticResource homeImage}"></Image>
@@ -79,8 +79,8 @@
         <!--Add a header after the menu-->
         <TextBlock DockPanel.Dock="Top" Text="Welcome to the IMDB Explorer!" 
        FontSize="35" FontWeight="Bold" TextAlignment="Left" 
-       Margin="0,0,0,0" Padding="20,10,10,10"
-       Background="#DDFFF7" FontFamily="Consolas"/>
+       Margin="0,0,0,0" Padding="20,10,10,10" 
+       Background="Gold" FontFamily="Consolas"/>
         <Frame x:Name="MainFrame"  Width="auto" Height="auto" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated"></Frame>
 
     </DockPanel>
